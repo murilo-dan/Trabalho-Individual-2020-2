@@ -14,11 +14,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Builds application
-        run: docker-compose --build
+        run: docker-compose build
 
   back-end-test-check:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Tests
         run: docker-compose run api python3 manage.py test
