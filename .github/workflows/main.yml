@@ -18,6 +18,7 @@ jobs:
 
   back-end-test-check:
     runs-on: ubuntu-latest
-    
-    - name: Tests
-      run: docker-compose run api python3 manage.py test
+
+    steps:
+      - name: Tests
+        run: docker-compose run api python3 manage.py test
