@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  full-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      uses: actions/checkout@v2
+      run: docker-compose up --build
+
+  back-end-test-check:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_DB: myproject
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+
+    env:
+        POSTGRES_DB: myproject
+        POSTGRES_USER: myuser
+        POSTGRES_PASSWORD: password
+        POSTGRES_HOST: 127.0.0.1
+        POSTGRES_PORT: 5432
+
+    steps:
+      uses: actions/checkout@v2
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9.4'
+
+      run: pip3 install -r api/requirements.txt
+
+      run: python3 api/manage.py migrate
+
+      run: python3 api/manage.py test
