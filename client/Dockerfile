@@ -9,4 +9,4 @@ RUN yarn install
 
 COPY . .
 
-CMD quasar dev
+CMD yarn && quasar dev
