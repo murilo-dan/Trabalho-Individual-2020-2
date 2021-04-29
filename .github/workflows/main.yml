@@ -18,9 +18,37 @@ jobs:
 
   back-end-test-check:
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_DB: actions_db
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: password
+          POSTGRES_PORT: 5432
+        ports:
+          - 5432:5432
+
+    env:
+        POSTGRES_DB: actions_db
+        POSTGRES_USER: myuser
+        POSTGRES_PASSWORD: password
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Tests
-        run: docker-compose run api python3 manage.py test
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9.4'
+      
+      - name: Install requirements
+        run: pip3 install -r api/requirements.txt
+
+      - name: Migrate
+        run: python3 api/manage.py migrate
+
+      - name: Test
+        run: python3 api/manage.py test
