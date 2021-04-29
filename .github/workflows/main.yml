@@ -22,13 +22,6 @@ jobs:
         ports:
           - 5432:5432
 
-    env:
-        POSTGRES_DB: actions_db
-        POSTGRES_USER: myuser
-        POSTGRES_PASSWORD: password
-        POSTGRES_HOST: localhost
-        POSTGRES_PORT: 5432
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -42,6 +35,18 @@ jobs:
 
       - name: Migrate
         run: python3 api/manage.py migrate
+        env:
+          POSTGRES_DB: actions_db
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: password
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
 
       - name: Test
         run: python3 api/manage.py test
+        env:
+          POSTGRES_DB: actions_db
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: password
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
