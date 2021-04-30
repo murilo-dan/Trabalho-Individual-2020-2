@@ -67,5 +67,5 @@ jobs:
       - name: Test
         run: |
           yarn install
-          yarn test
+          yarn test:unit:ci
         working-directory: client/
