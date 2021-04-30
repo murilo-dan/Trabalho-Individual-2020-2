@@ -68,4 +68,4 @@ jobs:
         run: |
           yarn install
           yarn test
-        working-directory: ~/client
+        working-directory: client/
