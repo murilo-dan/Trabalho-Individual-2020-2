@@ -63,8 +63,9 @@ jobs:
           with:
             node-version: '14.16.1'
 
-        - name: Test
+        - name: Set working directory
           working-directory: ~/client
+        - name: Test
           run: |
             yarn install
             yarn test
