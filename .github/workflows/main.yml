@@ -17,7 +17,7 @@ jobs:
         run: docker-compose build
 
 
-  back-end-test-check:
+  back-end-test-lint:
     runs-on: ubuntu-latest
     services:
       db:
@@ -45,20 +45,20 @@ jobs:
         with:
           python-version: '3.9.4'
       
-      - name: Install requirements
+      - name: Setup
         run: pip3 install -r api/requirements.txt
 
       - name: Migrate
         run: python3 api/manage.py migrate
 
-      - name: Test
-        run: python3 api/manage.py test
+      - name: Test Coverage
+        run: coverage run api/manage.py test
 
       - name: Lint
         run: pylint --load-plugins pylint_django --django-settings-module=api.settings api/*.py --fail-under=5
 
 
-  front-end-test-check:
+  front-end-test-lint:
     runs-on: ubuntu-latest
 
     steps:
