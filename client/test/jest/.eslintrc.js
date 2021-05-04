@@ -1,7 +1,4 @@
 module.exports = {
-  rules: {
-    '@typescript-eslint/no-var-requires': 0,
-  },
   extends: [
     // Removes 'no-undef' lint errors for Jest global functions (`describe`, `it`, etc),
     //  add Jest-specific lint rules and Jest plugin
