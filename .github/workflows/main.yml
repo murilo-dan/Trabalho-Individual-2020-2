@@ -55,7 +55,7 @@ jobs:
         run: python3 api/manage.py test
 
       - name: Lint
-        run: pylint --load-plugins pylint_django --django-settings-module=api.settings api/*.py
+        run: pylint --load-plugins pylint_django --django-settings-module=api.settings api/*.py --fail-under=4
 
 
   front-end-test-check:
