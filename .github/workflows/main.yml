@@ -51,8 +51,21 @@ jobs:
       - name: Migrate
         run: python3 api/manage.py migrate
 
-      - name: Test Coverage
-        run: coverage run api/manage.py test
+      - name: Test
+        run: python3 api/manage.py test
+
+      - name: Coverage
+        run: coverage run --source="." api/manage.py test
+
+      - name: Upload coverage
+        run: coverage xml
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN_API }}
+          directory: ${{github.workspace}}/**
+          flags: unittests
+          fail_ci_if_error: true
+          verbose: true
 
       - name: Lint
         run: pylint --load-plugins pylint_django --django-settings-module=api.settings api/*.py --fail-under=5
