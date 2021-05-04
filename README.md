@@ -1,3 +1,7 @@
+[![CI](https://github.com/murilo-dan/Trabalho-Individual-2020-2/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/murilo-dan/Trabalho-Individual-2020-2/actions/workflows/main.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=murilo-dan_Trabalho-Individual-2020-2&metric=alert_status)](https://sonarcloud.io/dashboard?id=murilo-dan_Trabalho-Individual-2020-2)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=murilo-dan_Trabalho-Individual-2020-2&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=murilo-dan_Trabalho-Individual-2020-2)
+
 # Trabalho Individual 2020.2
 
 
