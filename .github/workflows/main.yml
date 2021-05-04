@@ -56,12 +56,14 @@ jobs:
 
       - name: Coverage
         run: coverage run --source="." api/manage.py test
+
+      - name: Convert coverage to xml
         run: coverage xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN_API }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           directory: ${{github.workspace}}/**
           flags: unittests
           fail_ci_if_error: true
