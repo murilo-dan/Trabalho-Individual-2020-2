@@ -55,13 +55,13 @@ jobs:
         run: python3 api/manage.py test
 
       - name: Coverage
-        run: coverage run api/manage.py test api && coverage xml
+        run: coverage run api/manage.py test && coverage xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ${{github.workspace}}/**
+          files: ./api/coverage.xml
           flags: unittests
           fail_ci_if_error: true
           verbose: true
