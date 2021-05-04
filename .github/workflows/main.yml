@@ -55,10 +55,7 @@ jobs:
         run: python3 api/manage.py test
 
       - name: Coverage
-        run: coverage run --source="." api/manage.py test
-
-      - name: Convert coverage to xml
-        run: coverage xml
+        run: coverage run --source="." api/manage.py test && coverage xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
