@@ -55,7 +55,7 @@ jobs:
         run: python3 api/manage.py test
 
       - name: Lint
-        run: pylint api
+        run: pylint --load-plugins pylint_django api
 
 
   front-end-test-check:
@@ -76,7 +76,10 @@ jobs:
         working-directory: client/
 
       - name: Lint
-        run: yarn lint
+        run: |
+          yarn global add eslint
+          yarn add eslint-plugin-vue
+          yarn lint
         working-directory: client/
 
 
